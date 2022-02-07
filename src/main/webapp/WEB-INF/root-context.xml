@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="springDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >	
+		
+ <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://ultrasmartsolutions.com/iltruasa_everest"/>  
+		<property name="username" value="iltruasa_evrsusr"/>
+		<property name="password" value="oeO5l9boqx6l"/>  
+	 
+ 	<!--  <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/everest"/>
+		<property name="username" value="root" />
+		<property name="password" value="root" />  -->
+					
+		<property name="maxIdle" value="100"/>
+		<property name="minIdle" value="10"/>
+   		<property name="validationQuery" value="select curdate()"/>
+   		<property name="removeAbandoned" value="true"/>
+   		<property name="initialSize" value="20" />
+   		<property name="maxActive" value="30" />		
+	</bean>
+	<bean id="projectImpl" class="com.ui.dao.impl.ProjectDAOImpl">
+		<property name="dataSource" ref="springDataSource"></property> 
+	</bean>
+</beans>
